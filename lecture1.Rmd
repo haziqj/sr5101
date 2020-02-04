@@ -1,0 +1,236 @@
+---
+title: "SR-5101 Advanced Research Skills"
+subtitle: "(1/3) Exploratory Data Analysis"
+author: "Dr. Haziq Jamil"
+date: "Semester 2, 2019/20"
+output:
+  xaringan::moon_reader:
+    css: [default, duke-blue, metropolis-fonts, "custom.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      countdown: 0
+---
+
+```{r setup, include=FALSE}
+options(width = 65)
+library(tidyverse)
+```
+
+# Admin
+
+- Lecturer information
+
+  ```html
+  Dr. Haziq Jamil
+  Assistant Professor in Statistics
+  Room M1.09
+  haziq.jamil@ubd.edu.bn
+  ```
+
+- Three classes scheduled:
+
+  - Wed 4/3 0800-1000 @ FSM 2.17
+  - Thu 5/3 1000-1200 @ FSM 2.17
+  - Sat 7/3 0800-1100 @ FSM 2.17
+
+- Slides and materials are available from my website.
+
+- Please download RStudio.
+
+---
+
+Data science workflow.
+Type 1 vs Type 2 data science.
+What is exploratoray data analysis?
+Visuals using ggplot.
+Prerequisite--install tidyverse.
+Examples of EDA?
+importing data.
+discrete vs continuous.
+Basic stuff (one way): 5-point data summary, distribution plots (histogram, box whisker, smoothed density), outliers
+(two way): covariation, correlation, plots for these (scatter plot)
+common issues (too many variables? confused? don't know what the question is?)
+
+---
+
+.center[![:scale 80%](/figures/00-ds2.png)]
+
+---
+
+![](/figures/00-ds1.png)
+
+
+---
+
+# Two kinds of data science
+
+- Type I Data Scientist
+
+  - Knows a lot about Data Science techniques or technologies. 
+  - Has a deep knowledge of their topic/domain of interest.
+  - Able to highlight details and patterns in the data.
+  - **"Exploratory Data Analysis"**
+
+--
+
+- Type II Data Scientist
+
+  - Focus on business goals and problems.
+  - Solves problems with data-based evidence.
+  - Good communicators and story tellers.
+  - **"Statistical Modelling and Inference"**
+
+--
+
+.footnote[
+----
+Categorisations are not my own. See this [blog post](https://brendantierneydatamining.blogspot.com/2013/03/type-i-and-type-ii-data-scientists.html) by B Tierney. It seems that Data Science as a subject continues to evolve to this day.
+]
+
+
+---
+layout: true
+
+# Exploratory Data Analysis
+
+---
+.center[.large[You are given a data set, what do you do first?]]
+
+--
+
+- EDA is a systematic way of manipulating, transforming, and visualising data.
+
+- It is an iterative cycle.
+
+- One objective in mind: **Generate many promising leads that you can later explore in more depth**.
+
+--
+
+.center[.large[There are no strict rules to follow—investigate every idea!]]
+
+---
+
+
+
+.center[.large[EDA is an important part of any data analysis, even if the questions are handed to you on a platter.]]
+
+EDA involves:
+
+- Data cleaning
+
+- Looking at patterns
+
+- Asking questions / forming hypotheses
+
+---
+layout: false
+
+# Asking questions
+
+1. What type of variation occurs within my variables?
+
+2. What type of covariation occurs between my variables?
+
+--
+
+- A **variable** is a quantity, quality, or property that you can measure.
+
+- A **value** is the state of a variable when you measure it. The value of a variable may change from measurement to measurement. 
+
+- An **observation** (or a sample) is a set of measurements made under similar conditions.
+
+---
+
+# Variation
+
+.center[.large[Variation is the tendency of the values of a variable to change from measurement to measurement.]]
+
+- Measurement of **continuous variables** can vary from one observation to another due to many factors (e.g. random noise, measurement error, etc.)&mdash;Even if they are supposedly constant (e.g. gravity, speed of light, molar mass constant, etc.)
+
+- **Categorical variables** (i.e. discrete variables) can also vary if you measure across different subjects (e.g. the eye colors of different people), or different times (e.g. the energy levels of an electron at different moments). 
+
+--
+
+.center[.large[No variation = no information (boring!). We are interested to see *patterns* of variation in each variable, which can reveal interesting information.]]
+
+---
+
+# Diamonds data set
+
+Prices of 50,000 round cut diamonds ( $n$ =54,000, $p$ = 10).
+
+```{r}
+diamonds
+```
+
+Type `?diamonds` in R to learn more about this data set (or any function of R!).
+
+---
+layout:true 
+
+# 5-number summary
+
+---
+
+The five-number summary is a set of descriptive statistics that provides information about a dataset. It consists of the five most important sample percentiles:
+
+1. The sample minimum 
+2. The lower quartiles (Q1, 25%)
+3. The median (Q2, 50%)
+4. The upper quartile (Q3, 75%)
+5. The sample maximum 
+
+--
+
+This is a concise way of summarising the **distribution** (i.e. spread) of the data set (without plotting).
+
+.center[.large[Beware of the flaw of averages!]]
+
+---
+
+.center[![:scale 100%](/figures/flaw_avg1.png)]
+
+---
+
+```{r}
+summary(diamonds)
+```
+
+---
+layout:false  
+
+# Frequency tables
+
+.center[.large[Notice that R gives the 5-number summary for **continuous variables** only]]
+
+- Obviously, it is not possible to calculate the summary statistics of categorical variables.
+
+- For categorical variables: one way of summarising it is using frequency tables.
+
+```{r}
+table(diamonds$cut)
+```
+
+- Later we'll see covariation between two categorical variables and how to tabulate this.
+
+
+---
+layout: false
+
+# Visualisation
+
+How you visualise the distribution of a variable will depend on whether the variable is categorical or continuous. 
+
+### Continuous
+
+- Box & Whisker plot
+- Histogram
+- Smoothed density plot
+
+### Categorical
+
+- Bar plots
