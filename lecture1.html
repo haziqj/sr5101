@@ -55,11 +55,11 @@ common issues (too many variables? confused? don't know what the question is?)
 
 ---
 
-.center[![:scale 80%](/figures/00-ds2.png)]
+.center[![:scale 80%](figures/00-ds2.png)]
 
 ---
 
-![](/figures/00-ds1.png)
+![](figures/00-ds1.png)
 
 
 ---
@@ -185,19 +185,20 @@ mpg
 
 ```
 ## # A tibble: 234 x 11
-##    manufacturer model displ  year   cyl trans drv     cty   hwy fl   
-##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
-##  1 audi         a4      1.8  1999     4 auto… f        18    29 p    
-##  2 audi         a4      1.8  1999     4 manu… f        21    29 p    
-##  3 audi         a4      2    2008     4 manu… f        20    31 p    
-##  4 audi         a4      2    2008     4 auto… f        21    30 p    
-##  5 audi         a4      2.8  1999     6 auto… f        16    26 p    
-##  6 audi         a4      2.8  1999     6 manu… f        18    26 p    
-##  7 audi         a4      3.1  2008     6 auto… f        18    27 p    
-##  8 audi         a4 q…   1.8  1999     4 manu… 4        18    26 p    
-##  9 audi         a4 q…   1.8  1999     4 auto… 4        16    25 p    
-## 10 audi         a4 q…   2    2008     4 manu… 4        20    28 p    
-## # … with 224 more rows, and 1 more variable: class &lt;chr&gt;
+##    manufacturer model displ  year   cyl trans drv     cty   hwy
+##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+##  1 audi         a4      1.8  1999     4 auto… f        18    29
+##  2 audi         a4      1.8  1999     4 manu… f        21    29
+##  3 audi         a4      2    2008     4 manu… f        20    31
+##  4 audi         a4      2    2008     4 auto… f        21    30
+##  5 audi         a4      2.8  1999     6 auto… f        16    26
+##  6 audi         a4      2.8  1999     6 manu… f        18    26
+##  7 audi         a4      3.1  2008     6 auto… f        18    27
+##  8 audi         a4 q…   1.8  1999     4 manu… 4        18    26
+##  9 audi         a4 q…   1.8  1999     4 auto… 4        16    25
+## 10 audi         a4 q…   2    2008     4 manu… 4        20    28
+## # … with 224 more rows, and 2 more variables: fl &lt;chr&gt;,
+## #   class &lt;chr&gt;
 ```
 
 Type `?mpg` in R to learn more about this data set (or any function of R!).
@@ -225,7 +226,7 @@ This is a concise way of summarising the **distribution** (i.e. spread) of the d
 
 ---
 
-.center[![:scale 100%](/figures/flaw_avg1.png)]
+.center[![:scale 100%](figures/flaw_avg1.png)]
 
 ---
 
@@ -235,27 +236,34 @@ summary(mpg)
 ```
 
 ```
-##  manufacturer          model               displ            year     
-##  Length:234         Length:234         Min.   :1.600   Min.   :1999  
-##  Class :character   Class :character   1st Qu.:2.400   1st Qu.:1999  
-##  Mode  :character   Mode  :character   Median :3.300   Median :2004  
-##                                        Mean   :3.472   Mean   :2004  
-##                                        3rd Qu.:4.600   3rd Qu.:2008  
-##                                        Max.   :7.000   Max.   :2008  
-##       cyl           trans               drv                 cty       
-##  Min.   :4.000   Length:234         Length:234         Min.   : 9.00  
-##  1st Qu.:4.000   Class :character   Class :character   1st Qu.:14.00  
-##  Median :6.000   Mode  :character   Mode  :character   Median :17.00  
-##  Mean   :5.889                                         Mean   :16.86  
-##  3rd Qu.:8.000                                         3rd Qu.:19.00  
-##  Max.   :8.000                                         Max.   :35.00  
-##       hwy             fl               class          
-##  Min.   :12.00   Length:234         Length:234        
-##  1st Qu.:18.00   Class :character   Class :character  
-##  Median :24.00   Mode  :character   Mode  :character  
-##  Mean   :23.44                                        
-##  3rd Qu.:27.00                                        
-##  Max.   :44.00
+##  manufacturer          model               displ      
+##  Length:234         Length:234         Min.   :1.600  
+##  Class :character   Class :character   1st Qu.:2.400  
+##  Mode  :character   Mode  :character   Median :3.300  
+##                                        Mean   :3.472  
+##                                        3rd Qu.:4.600  
+##                                        Max.   :7.000  
+##       year           cyl           trans          
+##  Min.   :1999   Min.   :4.000   Length:234        
+##  1st Qu.:1999   1st Qu.:4.000   Class :character  
+##  Median :2004   Median :6.000   Mode  :character  
+##  Mean   :2004   Mean   :5.889                     
+##  3rd Qu.:2008   3rd Qu.:8.000                     
+##  Max.   :2008   Max.   :8.000                     
+##      drv                 cty             hwy       
+##  Length:234         Min.   : 9.00   Min.   :12.00  
+##  Class :character   1st Qu.:14.00   1st Qu.:18.00  
+##  Mode  :character   Median :17.00   Median :24.00  
+##                     Mean   :16.86   Mean   :23.44  
+##                     3rd Qu.:19.00   3rd Qu.:27.00  
+##                     Max.   :35.00   Max.   :44.00  
+##       fl               class          
+##  Length:234         Length:234        
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+## 
 ```
 
 ---
@@ -656,8 +664,11 @@ class: inverse, middle, center
 # Example 1: Titanic survival data
 
 ---
+layout: true
 
 # Load the data
+
+---
 
 
 ```r
@@ -665,7 +676,27 @@ library(readr)
 titanic &lt;- read_csv("titanic.csv")
 ```
 
-.center[![:scale 80%](/figures/importdata.png)]
+```
+## Parsed with column specification:
+## cols(
+##   PassengerId = col_double(),
+##   Survived = col_double(),
+##   Pclass = col_double(),
+##   Name = col_character(),
+##   Sex = col_character(),
+##   Age = col_double(),
+##   SibSp = col_double(),
+##   Parch = col_double(),
+##   Ticket = col_character(),
+##   Fare = col_double(),
+##   Cabin = col_character(),
+##   Embarked = col_character()
+## )
+```
+
+---
+
+.center[![:scale 80%](figures/importdata.png)]
 
 ---
 layout: true 
@@ -682,20 +713,20 @@ titanic  # or type View(titanic)
 
 ```
 ## # A tibble: 891 x 12
-##    PassengerId Survived Pclass Name  Sex     Age SibSp Parch Ticket  Fare
-##          &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
-##  1           1 No            3 Brau… male     22     1     0 A/5 2…  7.25
-##  2           2 Yes           1 Cumi… fema…    38     1     0 PC 17… 71.3 
-##  3           3 Yes           3 Heik… fema…    26     0     0 STON/…  7.92
-##  4           4 Yes           1 Futr… fema…    35     1     0 113803 53.1 
-##  5           5 No            3 Alle… male     35     0     0 373450  8.05
-##  6           6 No            3 Mora… male     NA     0     0 330877  8.46
-##  7           7 No            1 McCa… male     54     0     0 17463  51.9 
-##  8           8 No            3 Pals… male      2     3     1 349909 21.1 
-##  9           9 Yes           3 John… fema…    27     0     2 347742 11.1 
-## 10          10 Yes           2 Nass… fema…    14     1     0 237736 30.1 
-## # … with 881 more rows, and 2 more variables: Cabin &lt;chr&gt;,
-## #   Embarked &lt;chr&gt;
+##    PassengerId Survived Pclass Name  Sex     Age SibSp Parch
+##          &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1           1        0      3 Brau… male     22     1     0
+##  2           2        1      1 Cumi… fema…    38     1     0
+##  3           3        1      3 Heik… fema…    26     0     0
+##  4           4        1      1 Futr… fema…    35     1     0
+##  5           5        0      3 Alle… male     35     0     0
+##  6           6        0      3 Mora… male     NA     0     0
+##  7           7        0      1 McCa… male     54     0     0
+##  8           8        0      3 Pals… male      2     3     1
+##  9           9        1      3 John… fema…    27     0     2
+## 10          10        1      2 Nass… fema…    14     1     0
+## # … with 881 more rows, and 4 more variables: Ticket &lt;chr&gt;,
+## #   Fare &lt;dbl&gt;, Cabin &lt;chr&gt;, Embarked &lt;chr&gt;
 ```
 
 Or just double-click the object 'titanic' from the environment window.
@@ -751,7 +782,7 @@ A great data scientist will also mould his state of mind to immerse themselves f
 
 ---
 
-.pull-left[![:scale 110%](/figures/titanicdata.png)]
+.pull-left[![:scale 110%](figures/titanicdata.png)]
 
 .pull-right[
 Data obtained from https://www.kaggle.com/c/titanic  
@@ -768,10 +799,12 @@ unlist(lapply(titanic, class))
 ```
 
 ```
-## PassengerId    Survived      Pclass        Name         Sex         Age 
-##   "numeric"    "factor"   "numeric" "character" "character"   "numeric" 
-##       SibSp       Parch      Ticket        Fare       Cabin    Embarked 
-##   "numeric"   "numeric" "character"   "numeric" "character" "character"
+## PassengerId    Survived      Pclass        Name         Sex 
+##   "numeric"   "numeric"   "numeric" "character" "character" 
+##         Age       SibSp       Parch      Ticket        Fare 
+##   "numeric"   "numeric"   "numeric" "character"   "numeric" 
+##       Cabin    Embarked 
+## "character" "character"
 ```
 
 Let's try ask some questions of the data.
@@ -797,7 +830,7 @@ table(titanic$Survived)
 
 ```
 ## 
-##  No Yes 
+##   0   1 
 ## 549 342
 ```
 
@@ -1062,6 +1095,16 @@ layout: false
 - EDA is "the first thing you do when data falls onto your lap"
 - You should get a feel for the data, poke around, and ask questions.
 - Visual tools aid in formulating relevant hypotheses surrounding the data.
+
+--
+
+Other examples of EDA:
+
+- [Predict future numbers of restaurant visitors](https://www.kaggle.com/headsortails/be-my-guest-recruit-restaurant-eda)
+- [Coronavirus: China and the rest of the world](https://www.kaggle.com/michau96/coronavirus-china-and-rest-of-world)
+- [Zillow's home value prediction](https://www.kaggle.com/philippsp/exploratory-analysis-zillow)
+
+--
 
 NEXT TIME: How do we know the differences are significant? We will look at hypothesis testing.
 

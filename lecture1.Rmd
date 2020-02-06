@@ -53,11 +53,11 @@ common issues (too many variables? confused? don't know what the question is?)
 
 ---
 
-.center[![:scale 80%](/figures/00-ds2.png)]
+.center[![:scale 80%](figures/00-ds2.png)]
 
 ---
 
-![](/figures/00-ds1.png)
+![](figures/00-ds1.png)
 
 
 ---
@@ -204,7 +204,7 @@ This is a concise way of summarising the **distribution** (i.e. spread) of the d
 
 ---
 
-.center[![:scale 100%](/figures/flaw_avg1.png)]
+.center[![:scale 100%](figures/flaw_avg1.png)]
 
 ---
 
@@ -493,15 +493,20 @@ class: inverse, middle, center
 # Example 1: Titanic survival data
 
 ---
+layout: true
 
 # Load the data
 
-```{r, eval = FALSE}
+---
+
+```{r}
 library(readr)
 titanic <- read_csv("titanic.csv")
 ```
 
-.center[![:scale 80%](/figures/importdata.png)]
+---
+
+.center[![:scale 80%](figures/importdata.png)]
 
 ---
 layout: true 
@@ -553,7 +558,7 @@ A great data scientist will also mould his state of mind to immerse themselves f
 
 ---
 
-.pull-left[![:scale 110%](/figures/titanicdata.png)]
+.pull-left[![:scale 110%](figures/titanicdata.png)]
 
 .pull-right[
 Data obtained from https://www.kaggle.com/c/titanic  
@@ -763,6 +768,16 @@ layout: false
 - EDA is "the first thing you do when data falls onto your lap"
 - You should get a feel for the data, poke around, and ask questions.
 - Visual tools aid in formulating relevant hypotheses surrounding the data.
+
+--
+
+Other examples of EDA:
+
+- [Predict future numbers of restaurant visitors](https://www.kaggle.com/headsortails/be-my-guest-recruit-restaurant-eda)
+- [Coronavirus: China and the rest of the world](https://www.kaggle.com/michau96/coronavirus-china-and-rest-of-world)
+- [Zillow's home value prediction](https://www.kaggle.com/philippsp/exploratory-analysis-zillow)
+
+--
 
 NEXT TIME: How do we know the differences are significant? We will look at hypothesis testing.
 
