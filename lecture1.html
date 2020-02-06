@@ -46,16 +46,11 @@ class: center, middle, inverse, title-slide
 
 ---
 
-Data science workflow.
-Type 1 vs Type 2 data science.
-What is exploratoray data analysis?
-Visuals using ggplot.
 Prerequisite--install tidyverse.
 Examples of EDA?
 importing data.
 discrete vs continuous.
-Basic stuff (one way): 5-point data summary, distribution plots (histogram, box whisker, smoothed density), outliers
-(two way): covariation, correlation, plots for these (scatter plot)
+
 common issues (too many variables? confused? don't know what the question is?)
 
 ---
@@ -162,33 +157,50 @@ layout: false
 
 ---
 
-# Diamonds data set
+# Install `tidyverse` package
 
-Prices of 50,000 round cut diamonds ( `\(n\)` =54,000, `\(p\)` = 10).
+Before we begin, install the `tidyverse` package
 
 
 ```r
-diamonds
+install.packages("tidyverse")
+```
+
+Contains a bunch of useful packages to help us do data science. Check out 
+https://www.tidyverse.org for more details.
+
+Most examples are based on this book: https://r4ds.had.co.nz 
+
+---
+
+
+# Fuel economy data set
+
+Fuel economy data from 1999 and 2008 for 38 popular models of car ( `\(n\)` =234, `\(p\)` = 11).
+
+
+```r
+mpg
 ```
 
 ```
-## # A tibble: 53,940 x 10
-##    carat cut    color clarity depth table price     x     y     z
-##    &lt;dbl&gt; &lt;ord&gt;  &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 0.23  Ideal  E     SI2      61.5    55   326  3.95  3.98  2.43
-##  2 0.21  Premi… E     SI1      59.8    61   326  3.89  3.84  2.31
-##  3 0.23  Good   E     VS1      56.9    65   327  4.05  4.07  2.31
-##  4 0.290 Premi… I     VS2      62.4    58   334  4.2   4.23  2.63
-##  5 0.31  Good   J     SI2      63.3    58   335  4.34  4.35  2.75
-##  6 0.24  Very … J     VVS2     62.8    57   336  3.94  3.96  2.48
-##  7 0.24  Very … I     VVS1     62.3    57   336  3.95  3.98  2.47
-##  8 0.26  Very … H     SI1      61.9    55   337  4.07  4.11  2.53
-##  9 0.22  Fair   E     VS2      65.1    61   337  3.87  3.78  2.49
-## 10 0.23  Very … H     VS1      59.4    61   338  4     4.05  2.39
-## # … with 53,930 more rows
+## # A tibble: 234 x 11
+##    manufacturer model displ  year   cyl trans drv     cty   hwy fl   
+##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
+##  1 audi         a4      1.8  1999     4 auto… f        18    29 p    
+##  2 audi         a4      1.8  1999     4 manu… f        21    29 p    
+##  3 audi         a4      2    2008     4 manu… f        20    31 p    
+##  4 audi         a4      2    2008     4 auto… f        21    30 p    
+##  5 audi         a4      2.8  1999     6 auto… f        16    26 p    
+##  6 audi         a4      2.8  1999     6 manu… f        18    26 p    
+##  7 audi         a4      3.1  2008     6 auto… f        18    27 p    
+##  8 audi         a4 q…   1.8  1999     4 manu… 4        18    26 p    
+##  9 audi         a4 q…   1.8  1999     4 auto… 4        16    25 p    
+## 10 audi         a4 q…   2    2008     4 manu… 4        20    28 p    
+## # … with 224 more rows, and 1 more variable: class &lt;chr&gt;
 ```
 
-Type `?diamonds` in R to learn more about this data set (or any function of R!).
+Type `?mpg` in R to learn more about this data set (or any function of R!).
 
 ---
 layout:true 
@@ -219,34 +231,31 @@ This is a concise way of summarising the **distribution** (i.e. spread) of the d
 
 
 ```r
-summary(diamonds)
+summary(mpg)
 ```
 
 ```
-##      carat               cut        color        clarity     
-##  Min.   :0.2000   Fair     : 1610   D: 6775   SI1    :13065  
-##  1st Qu.:0.4000   Good     : 4906   E: 9797   VS2    :12258  
-##  Median :0.7000   Very Good:12082   F: 9542   SI2    : 9194  
-##  Mean   :0.7979   Premium  :13791   G:11292   VS1    : 8171  
-##  3rd Qu.:1.0400   Ideal    :21551   H: 8304   VVS2   : 5066  
-##  Max.   :5.0100                     I: 5422   VVS1   : 3655  
-##                                     J: 2808   (Other): 2531  
-##      depth           table           price      
-##  Min.   :43.00   Min.   :43.00   Min.   :  326  
-##  1st Qu.:61.00   1st Qu.:56.00   1st Qu.:  950  
-##  Median :61.80   Median :57.00   Median : 2401  
-##  Mean   :61.75   Mean   :57.46   Mean   : 3933  
-##  3rd Qu.:62.50   3rd Qu.:59.00   3rd Qu.: 5324  
-##  Max.   :79.00   Max.   :95.00   Max.   :18823  
-##                                                 
-##        x                y                z         
-##  Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
-##  1st Qu.: 4.710   1st Qu.: 4.720   1st Qu.: 2.910  
-##  Median : 5.700   Median : 5.710   Median : 3.530  
-##  Mean   : 5.731   Mean   : 5.735   Mean   : 3.539  
-##  3rd Qu.: 6.540   3rd Qu.: 6.540   3rd Qu.: 4.040  
-##  Max.   :10.740   Max.   :58.900   Max.   :31.800  
-## 
+##  manufacturer          model               displ            year     
+##  Length:234         Length:234         Min.   :1.600   Min.   :1999  
+##  Class :character   Class :character   1st Qu.:2.400   1st Qu.:1999  
+##  Mode  :character   Mode  :character   Median :3.300   Median :2004  
+##                                        Mean   :3.472   Mean   :2004  
+##                                        3rd Qu.:4.600   3rd Qu.:2008  
+##                                        Max.   :7.000   Max.   :2008  
+##       cyl           trans               drv                 cty       
+##  Min.   :4.000   Length:234         Length:234         Min.   : 9.00  
+##  1st Qu.:4.000   Class :character   Class :character   1st Qu.:14.00  
+##  Median :6.000   Mode  :character   Mode  :character   Median :17.00  
+##  Mean   :5.889                                         Mean   :16.86  
+##  3rd Qu.:8.000                                         3rd Qu.:19.00  
+##  Max.   :8.000                                         Max.   :35.00  
+##       hwy             fl               class          
+##  Min.   :12.00   Length:234         Length:234        
+##  1st Qu.:18.00   Class :character   Class :character  
+##  Median :24.00   Mode  :character   Mode  :character  
+##  Mean   :23.44                                        
+##  3rd Qu.:27.00                                        
+##  Max.   :44.00
 ```
 
 ---
@@ -262,13 +271,13 @@ layout:false
 
 
 ```r
-table(diamonds$cut)
+table(mpg$drv)
 ```
 
 ```
 ## 
-##      Fair      Good Very Good   Premium     Ideal 
-##      1610      4906     12082     13791     21551
+##   4   f   r 
+## 103 106  25
 ```
 
 - Later we'll see covariation between two categorical variables and how to tabulate this.
@@ -290,6 +299,776 @@ How you visualise the distribution of a variable will depend on whether the vari
 ### Categorical
 
 - Bar plots
+
+---
+
+# Histogram
+
+
+```r
+summary(mpg$hwy)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.00   18.00   24.00   23.44   27.00   44.00
+```
+
+```r
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))
+```
+
+&lt;img src="lecture1_files/figure-html/histplot-1.png" width="800px" /&gt;
+
+---
+
+# Histogram
+
+
+```r
+summary(mpg$hwy)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.00   18.00   24.00   23.44   27.00   44.00
+```
+
+```r
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy), binwidth = 5)
+```
+
+&lt;img src="lecture1_files/figure-html/histplot2-1.png" width="800px" /&gt;
+
+---
+
+# Histogram
+
+
+```r
+summary(mpg$hwy)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.00   18.00   24.00   23.44   27.00   44.00
+```
+
+```r
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy), binwidth = 0.5)
+```
+
+&lt;img src="lecture1_files/figure-html/histplot3-1.png" width="800px" /&gt;
+
+
+---
+
+# Smoothed density plot
+
+
+```r
+summary(mpg$hwy)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.00   18.00   24.00   23.44   27.00   44.00
+```
+
+```r
+ggplot(data = mpg) +
+  geom_density(mapping = aes(x = hwy))
+```
+
+&lt;img src="lecture1_files/figure-html/densplot-1.png" width="800px" /&gt;
+
+---
+
+# Histogram with smoothed density plot
+
+
+```r
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy, y = stat(density)),
+                 binwidth = 5) +
+  geom_density(mapping = aes(x = hwy), col = "red", size = 1)
+```
+
+&lt;img src="lecture1_files/figure-html/histdensplot-1.png" width="800px" /&gt;
+
+---
+layout: true
+
+# Box &amp; Whisker plot
+
+---
+
+
+
+```r
+summary(mpg$hwy)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.00   18.00   24.00   23.44   27.00   44.00
+```
+
+```r
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(y = hwy))
+```
+
+&lt;img src="lecture1_files/figure-html/bwplot-1.png" width="800px" /&gt;
+
+---
+
+.center[![:scale 150%](figures/eda-boxplot.png)]
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(y = hwy, x = 0)) +
+  geom_boxplot() +
+  geom_point()
+```
+
+&lt;img src="lecture1_files/figure-html/bwplot2-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(y = hwy, x = 0)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.3)
+```
+
+&lt;img src="lecture1_files/figure-html/bwplot3-1.png" width="800px" /&gt;
+
+---
+layout: false
+
+# Bar plot
+
+.center[.large[Use for **discrete variables** only! This is not the same as a histogram!]]
+
+
+```r
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class))
+```
+
+&lt;img src="lecture1_files/figure-html/barplot-1.png" width="800px" /&gt;
+
+---
+layout: true
+
+# Covariation
+
+---
+
+If variation describes the behavior within a variable, covariation describes the behavior between variables. Covariation is the tendency for the values of two or more variables to vary together in a related way.
+
+---
+
+### Continuous vs continuous variables
+
+- Scatter plot
+- Smoothed lines
+
+### Continuous vs categorical variables
+
+- Box &amp; whisker 
+- Faceting
+- Additional aesthetic mappings
+
+### Categorical vs categorical variables
+
+- Count plots
+- Heat maps
+
+---
+layout: false
+
+# Scatter plot
+
+
+```r
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+&lt;img src="lecture1_files/figure-html/scatter-1.png" width="800px" /&gt;
+
+---
+layout: true
+
+# Smoothed line
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+```
+
+&lt;img src="lecture1_files/figure-html/smoothline-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+&lt;img src="lecture1_files/figure-html/smoothline2-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+&lt;img src="lecture1_files/figure-html/smoothline3-1.png" width="800px" /&gt;
+
+---
+layout: false
+
+# Box &amp; Whisker
+
+
+```r
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(y = hwy, x = class)) +
+  labs(y = "Highway miles per gallon", x = "Vehicle type")
+```
+
+&lt;img src="lecture1_files/figure-html/bwplot4-1.png" width="800px" /&gt;
+
+---
+
+# Faceting
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm") +
+  facet_wrap(~ class, nrow = 2)
+```
+
+&lt;img src="lecture1_files/figure-html/smoothlinefacet-1.png" width="800px" /&gt;
+
+---
+layout: true
+
+# Additional aesthetics
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point()
+```
+
+&lt;img src="lecture1_files/figure-html/addaes-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+&lt;img src="lecture1_files/figure-html/addaes2-1.png" width="800px" /&gt;
+
+---
+layout: false
+
+# Contingency tables
+
+Recall the frequency table earlier? We can also do it for two categorical variables.
+
+
+```r
+table(mpg$class, mpg$cyl)
+```
+
+```
+##             
+##               4  5  6  8
+##   2seater     0  0  0  5
+##   compact    32  2 13  0
+##   midsize    16  0 23  2
+##   minivan     1  0 10  0
+##   pickup      3  0 10 20
+##   subcompact 21  2  7  5
+##   suv         8  0 16 38
+```
+
+
+---
+
+# Count plot
+
+
+```r
+ggplot(data = mpg) +
+  geom_count(mapping = aes(x = class, y = cyl))
+```
+
+&lt;img src="lecture1_files/figure-html/countplot-1.png" width="800px" /&gt;
+
+---
+
+# Heatmap
+
+
+
+```r
+dat &lt;- reshape2::melt(table(mpg$class, mpg$cyl),
+                      var = c("class", "cyl"))
+ggplot(data = dat) +
+  geom_tile(mapping = aes(x = class, y = cyl, fill = value)) +
+  scale_fill_gradient(low = "white", high = "blue")
+```
+
+&lt;img src="lecture1_files/figure-html/heatmap-1.png" width="800px" /&gt;
+
+---
+class: inverse, middle, center
+
+# Example 1: Titanic survival data
+
+---
+
+# Load the data
+
+
+```r
+library(readr)
+titanic &lt;- read_csv("titanic.csv")
+```
+
+.center[![:scale 80%](/figures/importdata.png)]
+
+---
+layout: true 
+
+# Look at the dataset
+
+---
+
+
+```r
+titanic  # or type View(titanic)
+```
+
+
+```
+## # A tibble: 891 x 12
+##    PassengerId Survived Pclass Name  Sex     Age SibSp Parch Ticket  Fare
+##          &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+##  1           1 No            3 Brau… male     22     1     0 A/5 2…  7.25
+##  2           2 Yes           1 Cumi… fema…    38     1     0 PC 17… 71.3 
+##  3           3 Yes           3 Heik… fema…    26     0     0 STON/…  7.92
+##  4           4 Yes           1 Futr… fema…    35     1     0 113803 53.1 
+##  5           5 No            3 Alle… male     35     0     0 373450  8.05
+##  6           6 No            3 Mora… male     NA     0     0 330877  8.46
+##  7           7 No            1 McCa… male     54     0     0 17463  51.9 
+##  8           8 No            3 Pals… male      2     3     1 349909 21.1 
+##  9           9 Yes           3 John… fema…    27     0     2 347742 11.1 
+## 10          10 Yes           2 Nass… fema…    14     1     0 237736 30.1 
+## # … with 881 more rows, and 2 more variables: Cabin &lt;chr&gt;,
+## #   Embarked &lt;chr&gt;
+```
+
+Or just double-click the object 'titanic' from the environment window.
+
+---
+
+Can also subset some variables:
+
+
+```r
+titanic[, c("Ticket", "Fare", "Cabin", "Embarked")]
+```
+
+```
+## # A tibble: 891 x 4
+##    Ticket            Fare Cabin Embarked
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   
+##  1 A/5 21171         7.25 &lt;NA&gt;  S       
+##  2 PC 17599         71.3  C85   C       
+##  3 STON/O2. 3101282  7.92 &lt;NA&gt;  S       
+##  4 113803           53.1  C123  S       
+##  5 373450            8.05 &lt;NA&gt;  S       
+##  6 330877            8.46 &lt;NA&gt;  Q       
+##  7 17463            51.9  E46   S       
+##  8 349909           21.1  &lt;NA&gt;  S       
+##  9 347742           11.1  &lt;NA&gt;  S       
+## 10 237736           30.1  &lt;NA&gt;  C       
+## # … with 881 more rows
+```
+
+
+---
+layout: true
+
+# What are we thinking?
+
+---
+
+As a data scientist, you should be curious about how the data set looks like. 
+- How many columns (variables) were measured?
+- How many rows (instances or samples) are available?
+- What kind of variables are there?
+- Are there any missing values?
+- Do I need to clean it?
+- Do I understand what the variables mean? (is there a codebook/data dictionary?)
+
+--
+
+A great data scientist will also mould his state of mind to immerse themselves fully in the data.
+- What day/month/year did the Titanic sail for its last journey?
+- What were the ports of call?
+- What was the public mood surrounding the Titanic?
+
+---
+
+.pull-left[![:scale 110%](/figures/titanicdata.png)]
+
+.pull-right[
+Data obtained from https://www.kaggle.com/c/titanic  
+
+Check where you obtained your data for the data dictionary.
+]
+---
+
+Often, we can get an immediate idea of what to do by just looking at the shape of the data and what's available. 
+
+
+```r
+unlist(lapply(titanic, class))
+```
+
+```
+## PassengerId    Survived      Pclass        Name         Sex         Age 
+##   "numeric"    "factor"   "numeric" "character" "character"   "numeric" 
+##       SibSp       Parch      Ticket        Fare       Cabin    Embarked 
+##   "numeric"   "numeric" "character"   "numeric" "character" "character"
+```
+
+Let's try ask some questions of the data.
+
+--
+
+- How many passengers survived?
+- What is the distribution of passenger class?
+- What's the average age of passengers?
+- Any difference in survival rates among other variables?
+
+---
+layout: true
+
+## How many passengers survived?
+
+---
+
+
+```r
+table(titanic$Survived)
+```
+
+```
+## 
+##  No Yes 
+## 549 342
+```
+
+```r
+# Convert to factor (i.e. categorical variables)
+titanic$Survived &lt;- factor(titanic$Survived)
+levels(titanic$Survived) &lt;- c("No", "Yes")
+table(titanic$Survived)
+```
+
+```
+## 
+##  No Yes 
+## 549 342
+```
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Survived)) +
+  geom_bar()
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-12-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Survived, fill = Survived)) +
+  geom_bar()
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-13-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Survived, fill = Survived)) +
+  geom_bar() +
+  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5) +
+  scale_y_continuous(limits = c(0, 600)) +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-14-1.png" width="800px" /&gt;
+
+
+---
+layout: false
+
+## What is the proportion that survived?
+
+
+```r
+ggplot(titanic, aes(x = Survived, fill = Survived,
+                    y = ..count.. / sum(..count..))) +
+  geom_bar() +
+  geom_text(aes(label = scales::percent(..count.. / sum(..count..))), 
+            stat = "count", vjust = -0.5) +
+  scale_y_continuous(labels = scales::percent, name = "Proportion", 
+                     limits = c(0, 0.7)) +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-15-1.png" width="800px" /&gt;
+
+---
+layout: true
+
+## Distribution of passenger class
+
+---
+
+
+```r
+table(titanic$Pclass)
+```
+
+```
+## 
+##   1   2   3 
+## 216 184 491
+```
+
+```r
+# Convert to factor (i.e. categorical variables)
+titanic$Pclass &lt;- factor(titanic$Pclass)
+levels(titanic$Pclass) &lt;- c("First", "Second", "Third")
+table(titanic$Pclass)
+```
+
+```
+## 
+##  First Second  Third 
+##    216    184    491
+```
+
+```r
+# Proportions
+table(titanic$Pclass) / length(titanic$Pclass)
+```
+
+```
+## 
+##     First    Second     Third 
+## 0.2424242 0.2065095 0.5510662
+```
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Pclass, fill = Pclass)) +
+  geom_bar() +
+  labs(x = "Passenger class", y = "Count") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-17-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Pclass, y = 0)) +
+  geom_count() +
+  labs(x = "Passenger class") +
+  theme_bw() +
+  theme(legend.position = "none", axis.text.y = element_blank(),
+        axis.title.y = element_blank())
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-18-1.png" width="800px" /&gt;
+
+Not a good plot!
+
+---
+layout: true
+
+## Passenger class vs survival
+
+---
+
+
+```r
+table(titanic$Survived, titanic$Pclass)
+```
+
+```
+##      
+##       First Second Third
+##   No     80     97   372
+##   Yes   136     87   119
+```
+
+```r
+df &lt;- reshape2::melt(table(titanic$Survived, titanic$Pclass),
+                     var = c("Survived", "Pclass"))
+df$prop &lt;- df$value / nrow(titanic)  # Calculate proportions
+df
+```
+
+```
+##   Survived Pclass value       prop
+## 1       No  First    80 0.08978676
+## 2      Yes  First   136 0.15263749
+## 3       No Second    97 0.10886644
+## 4      Yes Second    87 0.09764310
+## 5       No  Third   372 0.41750842
+## 6      Yes  Third   119 0.13355780
+```
+
+---
+
+
+```r
+ggplot(df, aes(x = Pclass, y = value, fill = Survived)) +
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-20-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(df, aes(x = Pclass, y = prop, fill = Survived)) +
+  geom_bar(stat = "identity", position = "fill") +
+  geom_text(aes(label = scales::percent(prop)), 
+            position = position_fill(vjust = 0.5)) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Passenger class", y = "Proportion") +
+  theme_bw()
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-21-1.png" width="800px" /&gt;
+
+---
+layout: true
+
+## Distribution of age of passengers
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Age, y = stat(density))) +
+  geom_histogram() +
+  geom_line(stat = "density", col = "blue", size = 1)
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-22-1.png" width="800px" /&gt;
+
+---
+
+
+
+```r
+ggplot(titanic, aes(x = Age, y = stat(density), group = Survived, 
+                    fill = Survived)) +
+  geom_histogram() 
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-23-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Age, y = stat(density), group = Survived, 
+                    col = Survived, fill = Survived)) +
+  geom_line(stat = "density", size = 1)
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-24-1.png" width="800px" /&gt;
+
+---
+
+
+```r
+ggplot(titanic, aes(x = Age, y = stat(density), group = Survived, 
+                    fill = Survived)) +
+  geom_histogram() + 
+  geom_line(stat = "density", size = 1) +
+  facet_grid(Survived ~ .) +
+  theme(legend.position = "none")
+```
+
+&lt;img src="lecture1_files/figure-html/unnamed-chunk-25-1.png" width="800px" /&gt;
+
+---
+layout: false
+
+# Wrap up
+
+- EDA is "the first thing you do when data falls onto your lap"
+- You should get a feel for the data, poke around, and ask questions.
+- Visual tools aid in formulating relevant hypotheses surrounding the data.
+
+NEXT TIME: How do we know the differences are significant? We will look at hypothesis testing.
+
+---
+class: inverse, middle, center
+
+# END
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

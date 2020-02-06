@@ -18,6 +18,7 @@ output:
 ```{r setup, include=FALSE}
 options(width = 65)
 library(tidyverse)
+knitr::opts_chunk$set(cache = TRUE)
 ```
 
 # Admin
@@ -43,16 +44,11 @@ library(tidyverse)
 
 ---
 
-Data science workflow.
-Type 1 vs Type 2 data science.
-What is exploratoray data analysis?
-Visuals using ggplot.
 Prerequisite--install tidyverse.
 Examples of EDA?
 importing data.
 discrete vs continuous.
-Basic stuff (one way): 5-point data summary, distribution plots (histogram, box whisker, smoothed density), outliers
-(two way): covariation, correlation, plots for these (scatter plot)
+
 common issues (too many variables? confused? don't know what the question is?)
 
 ---
@@ -159,15 +155,31 @@ layout: false
 
 ---
 
-# Diamonds data set
+# Install `tidyverse` package
 
-Prices of 50,000 round cut diamonds ( $n$ =54,000, $p$ = 10).
+Before we begin, install the `tidyverse` package
 
-```{r}
-diamonds
+```{r, eval = FALSE}
+install.packages("tidyverse")
 ```
 
-Type `?diamonds` in R to learn more about this data set (or any function of R!).
+Contains a bunch of useful packages to help us do data science. Check out 
+https://www.tidyverse.org for more details.
+
+Most examples are based on this book: https://r4ds.had.co.nz 
+
+---
+
+
+# Fuel economy data set
+
+Fuel economy data from 1999 and 2008 for 38 popular models of car ( $n$ =234, $p$ = 11).
+
+```{r}
+mpg
+```
+
+Type `?mpg` in R to learn more about this data set (or any function of R!).
 
 ---
 layout:true 
@@ -197,7 +209,7 @@ This is a concise way of summarising the **distribution** (i.e. spread) of the d
 ---
 
 ```{r}
-summary(diamonds)
+summary(mpg)
 ```
 
 ---
@@ -212,7 +224,7 @@ layout:false
 - For categorical variables: one way of summarising it is using frequency tables.
 
 ```{r}
-table(diamonds$cut)
+table(mpg$drv)
 ```
 
 - Later we'll see covariation between two categorical variables and how to tabulate this.
@@ -234,3 +246,533 @@ How you visualise the distribution of a variable will depend on whether the vari
 ### Categorical
 
 - Bar plots
+
+---
+
+# Histogram
+
+```{r histplot, fig.width = 6, fig.height = 2.2, out.width = "800px", message = FALSE}
+summary(mpg$hwy)
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))
+```
+
+---
+
+# Histogram
+
+```{r histplot2, fig.width = 6, fig.height = 2.2, out.width = "800px", message = FALSE}
+summary(mpg$hwy)
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy), binwidth = 5)
+```
+
+---
+
+# Histogram
+
+```{r histplot3, fig.width = 6, fig.height = 2.2, out.width = "800px", message = FALSE}
+summary(mpg$hwy)
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy), binwidth = 0.5)
+```
+
+
+---
+
+# Smoothed density plot
+
+```{r densplot, fig.width = 6, fig.height = 2.2, out.width = "800px", message = FALSE}
+summary(mpg$hwy)
+ggplot(data = mpg) +
+  geom_density(mapping = aes(x = hwy))
+```
+
+---
+
+# Histogram with smoothed density plot
+
+```{r histdensplot, fig.width = 6, fig.height = 2.9, out.width = "800px", message = FALSE}
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy, y = stat(density)),
+                 binwidth = 5) +
+  geom_density(mapping = aes(x = hwy), col = "red", size = 1)
+```
+
+---
+layout: true
+
+# Box & Whisker plot
+
+---
+
+
+```{r bwplot, fig.width = 6, fig.height = 2.2, out.width = "800px"}
+summary(mpg$hwy)
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(y = hwy))
+```
+
+---
+
+.center[![:scale 150%](figures/eda-boxplot.png)]
+
+---
+
+```{r bwplot2, fig.width = 6, fig.height = 3.2, out.width = "800px"}
+ggplot(data = mpg, mapping = aes(y = hwy, x = 0)) +
+  geom_boxplot() +
+  geom_point()
+```
+
+---
+
+```{r bwplot3, fig.width = 6, fig.height = 3.2, out.width = "800px"}
+ggplot(data = mpg, mapping = aes(y = hwy, x = 0)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.3)
+```
+
+---
+layout: false
+
+# Bar plot
+
+.center[.large[Use for **discrete variables** only! This is not the same as a histogram!]]
+
+```{r barplot, fig.width = 6, fig.height = 2.5, out.width = "800px"}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class))
+```
+
+---
+layout: true
+
+# Covariation
+
+---
+
+If variation describes the behavior within a variable, covariation describes the behavior between variables. Covariation is the tendency for the values of two or more variables to vary together in a related way.
+
+---
+
+### Continuous vs continuous variables
+
+- Scatter plot
+- Smoothed lines
+
+### Continuous vs categorical variables
+
+- Box & whisker 
+- Faceting
+- Additional aesthetic mappings
+
+### Categorical vs categorical variables
+
+- Count plots
+- Heat maps
+
+---
+layout: false
+
+# Scatter plot
+
+```{r scatter, fig.width = 6, fig.height = 3.2, out.width = "800px"}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+---
+layout: true
+
+# Smoothed line
+
+---
+
+```{r smoothline, fig.width = 6, fig.height = 3.2, out.width = "800px", message = FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+```
+
+---
+
+```{r smoothline2, fig.width = 6, fig.height = 3.2, out.width = "800px", message = FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+---
+
+```{r smoothline3, fig.width = 6, fig.height = 3.2, out.width = "800px", message = FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+---
+layout: false
+
+# Box & Whisker
+
+```{r bwplot4, fig.width = 6, fig.height = 3.2, out.width = "800px"}
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(y = hwy, x = class)) +
+  labs(y = "Highway miles per gallon", x = "Vehicle type")
+```
+
+---
+
+# Faceting
+
+```{r smoothlinefacet, fig.width = 6, fig.height = 3.1, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm") +
+  facet_wrap(~ class, nrow = 2)
+```
+
+---
+layout: true
+
+# Additional aesthetics
+
+---
+
+```{r addaes, fig.width = 6, fig.height = 3.1, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point()
+```
+
+---
+
+```{r addaes2, fig.width = 6, fig.height = 3.1, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+---
+layout: false
+
+# Contingency tables
+
+Recall the frequency table earlier? We can also do it for two categorical variables.
+
+```{r}
+table(mpg$class, mpg$cyl)
+```
+
+
+---
+
+# Count plot
+
+```{r countplot, fig.width = 6, fig.height = 3.1, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(data = mpg) +
+  geom_count(mapping = aes(x = class, y = cyl))
+```
+
+---
+
+# Heatmap
+
+
+```{r heatmap, fig.width = 6, fig.height = 3, out.width = "800px", message = FALSE, warning = FALSE}
+dat <- reshape2::melt(table(mpg$class, mpg$cyl),
+                      var = c("class", "cyl"))
+ggplot(data = dat) +
+  geom_tile(mapping = aes(x = class, y = cyl, fill = value)) +
+  scale_fill_gradient(low = "white", high = "blue")
+```
+
+---
+class: inverse, middle, center
+
+# Example 1: Titanic survival data
+
+---
+
+# Load the data
+
+```{r, eval = FALSE}
+library(readr)
+titanic <- read_csv("titanic.csv")
+```
+
+.center[![:scale 80%](/figures/importdata.png)]
+
+---
+layout: true 
+
+# Look at the dataset
+
+---
+
+```{r, eval = FALSE}
+titanic  # or type View(titanic)
+```
+
+```{r, echo = FALSE}
+titanic
+```
+
+Or just double-click the object 'titanic' from the environment window.
+
+---
+
+Can also subset some variables:
+
+```{r}
+titanic[, c("Ticket", "Fare", "Cabin", "Embarked")]
+```
+
+
+---
+layout: true
+
+# What are we thinking?
+
+---
+
+As a data scientist, you should be curious about how the data set looks like. 
+- How many columns (variables) were measured?
+- How many rows (instances or samples) are available?
+- What kind of variables are there?
+- Are there any missing values?
+- Do I need to clean it?
+- Do I understand what the variables mean? (is there a codebook/data dictionary?)
+
+--
+
+A great data scientist will also mould his state of mind to immerse themselves fully in the data.
+- What day/month/year did the Titanic sail for its last journey?
+- What were the ports of call?
+- What was the public mood surrounding the Titanic?
+
+---
+
+.pull-left[![:scale 110%](/figures/titanicdata.png)]
+
+.pull-right[
+Data obtained from https://www.kaggle.com/c/titanic  
+
+Check where you obtained your data for the data dictionary.
+]
+---
+
+Often, we can get an immediate idea of what to do by just looking at the shape of the data and what's available. 
+
+```{r}
+unlist(lapply(titanic, class))
+```
+
+Let's try ask some questions of the data.
+
+--
+
+- How many passengers survived?
+- What is the distribution of passenger class?
+- What's the average age of passengers?
+- Any difference in survival rates among other variables?
+
+---
+layout: true
+
+## How many passengers survived?
+
+---
+
+```{r, fig.width = 6, fig.height = 3, out.width = "800px", message = FALSE, warning = FALSE}
+table(titanic$Survived)
+
+# Convert to factor (i.e. categorical variables)
+titanic$Survived <- factor(titanic$Survived)
+levels(titanic$Survived) <- c("No", "Yes")
+table(titanic$Survived)
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 3.2, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Survived)) +
+  geom_bar()
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 3.2, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Survived, fill = Survived)) +
+  geom_bar()
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 2.8, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Survived, fill = Survived)) +
+  geom_bar() +
+  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5) +
+  scale_y_continuous(limits = c(0, 600)) +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+
+---
+layout: false
+
+## What is the proportion that survived?
+
+```{r, fig.width = 6, fig.height = 2.5, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Survived, fill = Survived,
+                    y = ..count.. / sum(..count..))) +
+  geom_bar() +
+  geom_text(aes(label = scales::percent(..count.. / sum(..count..))), 
+            stat = "count", vjust = -0.5) +
+  scale_y_continuous(labels = scales::percent, name = "Proportion", 
+                     limits = c(0, 0.7)) +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+---
+layout: true
+
+## Distribution of passenger class
+
+---
+
+```{r}
+table(titanic$Pclass)
+
+# Convert to factor (i.e. categorical variables)
+titanic$Pclass <- factor(titanic$Pclass)
+levels(titanic$Pclass) <- c("First", "Second", "Third")
+table(titanic$Pclass)
+
+# Proportions
+table(titanic$Pclass) / length(titanic$Pclass)
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 3, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Pclass, fill = Pclass)) +
+  geom_bar() +
+  labs(x = "Passenger class", y = "Count") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 2.4, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Pclass, y = 0)) +
+  geom_count() +
+  labs(x = "Passenger class") +
+  theme_bw() +
+  theme(legend.position = "none", axis.text.y = element_blank(),
+        axis.title.y = element_blank())
+```
+
+Not a good plot!
+
+---
+layout: true
+
+## Passenger class vs survival
+
+---
+
+```{r, fig.width = 6, fig.height = 3, out.width = "800px", message = FALSE, warning = FALSE}
+table(titanic$Survived, titanic$Pclass)
+
+df <- reshape2::melt(table(titanic$Survived, titanic$Pclass),
+                     var = c("Survived", "Pclass"))
+df$prop <- df$value / nrow(titanic)  # Calculate proportions
+df
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 3.4, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(df, aes(x = Pclass, y = value, fill = Survived)) +
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 2.7, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(df, aes(x = Pclass, y = prop, fill = Survived)) +
+  geom_bar(stat = "identity", position = "fill") +
+  geom_text(aes(label = scales::percent(prop)), 
+            position = position_fill(vjust = 0.5)) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Passenger class", y = "Proportion") +
+  theme_bw()
+```
+
+---
+layout: true
+
+## Distribution of age of passengers
+
+---
+
+```{r, fig.width = 6, fig.height = 3.4, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Age, y = stat(density))) +
+  geom_histogram() +
+  geom_line(stat = "density", col = "blue", size = 1)
+```
+
+---
+
+
+```{r, fig.width = 6, fig.height = 3.4, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Age, y = stat(density), group = Survived, 
+                    fill = Survived)) +
+  geom_histogram() 
+
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 3.3, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Age, y = stat(density), group = Survived, 
+                    col = Survived, fill = Survived)) +
+  geom_line(stat = "density", size = 1)
+```
+
+---
+
+```{r, fig.width = 6, fig.height = 2.9, out.width = "800px", message = FALSE, warning = FALSE}
+ggplot(titanic, aes(x = Age, y = stat(density), group = Survived, 
+                    fill = Survived)) +
+  geom_histogram() + 
+  geom_line(stat = "density", size = 1) +
+  facet_grid(Survived ~ .) +
+  theme(legend.position = "none")
+```
+
+---
+layout: false
+
+# Wrap up
+
+- EDA is "the first thing you do when data falls onto your lap"
+- You should get a feel for the data, poke around, and ask questions.
+- Visual tools aid in formulating relevant hypotheses surrounding the data.
+
+NEXT TIME: How do we know the differences are significant? We will look at hypothesis testing.
+
+---
+class: inverse, middle, center
+
+# END
+
+
+
+
+
+
