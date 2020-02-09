@@ -171,9 +171,11 @@ The setup is as follows:
 
 - The probability $p$ of observing such a value is
 
-\begin{align*}
-p = \frac{{a + b \choose a}{c + d \choose c}}{{a + b + c + d \choose a + c}} = \frac{(a+b)!(c+d)!(a+c)!(b+d)!}{a!b!c!d!(a+b+c+d)!}
-\end{align*}
+<!-- \begin{align*} -->
+<!-- p = \frac{{a + b \choose a}{c + d \choose c}}{{a + b + c + d \choose a + c}} = \frac{(a+b)!(c+d)!(a+c)!(b+d)!}{a!b!c!d!(a+b+c+d)!} -->
+<!-- \end{align*} -->
+
+.center[![:scale 80%](figures/fishertestprop.gif)]
 
 - Need to also find probabilities for observing more extreme values than the one observed... these are then summed up to give the $p$-value.
 
