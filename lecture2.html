@@ -173,9 +173,9 @@ The setup is as follows:
 
 - The probability `\(p\)` of observing such a value is
 
-$$
+`\begin{align*}
 p = \frac{{a + b \choose a}{c + d \choose c}}{{a + b + c + d \choose a + c}} = \frac{(a+b)!(c+d)!(a+c)!(b+d)!}{a!b!c!d!(a+b+c+d)!}
-$$
+\end{align*}`
 
 - Need to also find probabilities for observing more extreme values than the one observed... these are then summed up to give the `\(p\)`-value.
 
@@ -317,13 +317,14 @@ chisq.test(TeaTasting)
 ```
 
 ```
-## Warning in chisq.test(TeaTasting): Chi-squared approximation may be
-## incorrect
+## Warning in chisq.test(TeaTasting): Chi-squared approximation may
+## be incorrect
 ```
 
 ```
 ## 
-## 	Pearson's Chi-squared test with Yates' continuity correction
+## 	Pearson's Chi-squared test with Yates' continuity
+## 	correction
 ## 
 ## data:  TeaTasting
 ## X-squared = 0.5, df = 1, p-value = 0.4795
@@ -437,8 +438,8 @@ chisq.test(x = sprmkt, y = 100 * poisprob)
 ```
 
 ```
-## Warning in chisq.test(x = sprmkt, y = 100 * poisprob): Chi-squared
-## approximation may be incorrect
+## Warning in chisq.test(x = sprmkt, y = 100 * poisprob): Chi-
+## squared approximation may be incorrect
 ```
 
 ```
@@ -456,8 +457,8 @@ chisq.test(x = sprmkt, y = 100 * poisprob,
 
 ```
 ## 
-## 	Pearson's Chi-squared test with simulated p-value (based on
-## 	10000 replicates)
+## 	Pearson's Chi-squared test with simulated p-value (based
+## 	on 10000 replicates)
 ## 
 ## data:  sprmkt and 100 * poisprob
 ## X-squared = 20, df = NA, p-value = 1
@@ -892,8 +893,8 @@ prop.test(x[2, ], nx)
 
 ```
 ## 
-## 	3-sample test for equality of proportions without continuity
-## 	correction
+## 	3-sample test for equality of proportions without
+## 	continuity correction
 ## 
 ## data:  x[2, ] out of nx
 ## X-squared = 102.89, df = 2, p-value &lt; 2.2e-16
