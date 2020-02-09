@@ -44,15 +44,6 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ---
 
-Prerequisite--install tidyverse.
-Examples of EDA?
-importing data.
-discrete vs continuous.
-
-common issues (too many variables? confused? don't know what the question is?)
-
----
-
 .center[![:scale 80%](figures/00-ds2.png)]
 
 ---
