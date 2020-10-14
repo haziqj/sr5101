@@ -36,6 +36,9 @@ layout: true
 
 - Do you yell at Fido or do you not yell at Fido? That depends on whether he is innocent. How can I know?
 
+- Example adapted from Cassie Kozyrkov's blog post [here](https://medium.com/hackernoon/explaining-p-values-with-puppies-af63d68005d0).
+
+
 ---
 
 - Assume Fido is innocent (null hypothesis). How surprising would this evidence be if Fido is innocent?
