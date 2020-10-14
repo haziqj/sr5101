@@ -2,7 +2,7 @@
 title: "SR-5101 Advanced Research Skills"
 subtitle: "(1/3) Exploratory Data Analysis"
 author: "Dr. Haziq Jamil"
-date: "Semester 2, 2019/20"
+date: "Semester 1, 2020/21"
 output:
   xaringan::moon_reader:
     css: [default, duke-blue, metropolis-fonts, "custom.css"]
@@ -34,9 +34,9 @@ knitr::opts_chunk$set(cache = TRUE)
 
 - Three classes scheduled:
 
-  - Wed 4/3 0800-1000 @ FSM 2.17
-  - Thu 5/3 1000-1200 @ FSM 2.17
-  - Sat 7/3 0800-1100 @ FSM 2.17
+  - Mon 19/10 0800-1000 ONLINE
+  - Mon 26/10 0800-1000 ONLINE
+  - Mon 2/11 0800-1000 ONLINE
 
 - Slides and materials are available from my website.
 

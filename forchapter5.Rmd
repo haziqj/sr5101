@@ -1,0 +1,142 @@
+---
+title: "forchapter5"
+author: "Haziq Jamil"
+date: "18/03/2020"
+output: 
+  pdf_document: 
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r, echo = 2}
+poverty <- readr::read_csv("poverty.csv")
+poverty
+```
+
+```{r 05-pairplot, fig.width = 7, fig.height = 4}
+GGally::ggpairs(poverty[, -1]) + theme_bw()
+```
+
+```{r}
+mod <- lm(formula = poverty ~ hs_grad + home_own + I(median_income/1000) +
+            party_maj, data = poverty)
+summary(mod)
+```
+
+```{r}
+X <- model.matrix(mod); head(X)  # n by (p + 1) matrix
+y <- poverty$poverty; head(y)  # n by 1 vector
+XtX <- t(X) %*% X  # (p + 1) by (p + 1) matrix
+colnames(XtX) <- rownames(XtX) <- NULL
+XtX
+Xty <- t(X) %*% y; head(Xty)  # (p + 1) by 1 vector
+```
+
+```{r}
+as.numeric(beta.hat <- solve(XtX, Xty))  # regression coefficients
+y.hat <- as.numeric(X %*% beta.hat); head(y.hat)  # fitted values
+eps.hat <- y - y.hat; head(eps.hat)  # residuals
+(sigma.hat <- sqrt(sum(eps.hat ^ 2) / (51 - 4 - 1)))  # residual SE
+```
+
+
+```{r}
+fitted(mod)  # obtain fitted values
+resid(mod)  # obtain residuals
+```
+
+
+```{r 05-diagplot, fig.width = 5, fig.height = 3}
+diag.plots <- lindia::gg_diagnose(mod, theme = theme_bw(), plot.all = FALSE,
+                                  scale.factor = 1)
+diag.plots$res_fitted
+diag.plots$residual_hist
+diag.plots$qqplot
+```
+
+
+```{r}
+(var.beta.hat <- sigma.hat ^ 2 * solve(XtX))  # Estimate of Var(beta.hat)
+(se.beta.hat <- sqrt(diag(var.beta.hat)))  # SE beta.hat
+as.numeric(beta.hat / se.beta.hat)  # test statistic value
+as.numeric(  # p-values
+  pt(abs(beta.hat / se.beta.hat), df = 50, lower.tail = FALSE)
+)
+(total.SS <- sum((y - mean(y)) ^ 2))  # Total SS
+(resid.SS <- sum(eps.hat ^ 2))  # Resid SS
+(reg.SS <- total.SS - resid.SS)  # Reg SS
+(reg.SS / 4) / (resid.SS / (51 - 4 - 1))  # F-statistic 
+1 - resid.SS / total.SS  # R^2 value
+
+
+(tmp <- apply(X, 2, mean))
+newx <- data.frame(
+  hs_grad = tmp[2],
+  home_own = tmp[3],
+  median_income = tmp[4] * 1000,
+  party_maj = "Dem"
+)
+predict(mod, newx, interval = "confidence", level = 0.95)  # narrow
+predict(mod, newx, interval = "prediction", level = 0.95)  # wider
+```
+
+```{r 05-poverty, fig.width = 6, fig.height = 3,  message = FALSE, warning = FALSE, echo = FALSE}
+# povdat <- readr::read_csv("poverty.csv")
+ggplot(poverty, aes(x = hs_grad, y = poverty)) +
+  geom_point() +
+  labs(x = "% High school graduates", y = "% in poverty") +
+  theme_bw() 
+
+```
+
+```{r 05-eyeball, fig.width = 6, fig.height = 3.5,  message = FALSE, warning = FALSE, echo = FALSE}
+ggplot(poverty, aes(x = hs_grad, y = poverty)) +
+  geom_point() +
+  geom_abline(slope = -0.09, intercept = 25, size = 1, col = "green") +
+  geom_abline(slope = -0.3, intercept = 40, size = 1, col = "red") +
+  geom_abline(slope = -1.4, intercept = 135, size = 1, col = "yellow") +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "% High school graduates", y = "% in poverty") +
+  theme_bw() 
+
+
+```
+
+```{r 05-minerror, fig.width = 5, fig.height = 3.5 * 5 / 6,  message = FALSE, warning = FALSE, echo = FALSE}
+mod <- lm(poverty ~ hs_grad, poverty)
+dat <- poverty
+dat$yhat <- fitted(mod)
+ggplot(dat, aes(x = hs_grad, y = poverty)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_segment(aes(x = hs_grad, xend = hs_grad, y = poverty, yend = yhat),
+               col = "red") +
+  labs(x = "% High school graduates", y = "% in poverty") +
+  theme_bw() 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

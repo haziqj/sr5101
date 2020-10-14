@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # SR-5101 Advanced Research Skills
 ## (3/3) Linear models
 ### Dr. Haziq Jamil
-### Semester 2, 2019/20
+### Semester 1, 2020/21
 
 ---
 
@@ -136,16 +136,16 @@ povdat
 ## # A tibble: 51 x 6
 ##    state         poverty hs_grad home_own median_income party_maj
 ##    &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;    
-##  1 Alabama         19.9     76.8     73.4        36963. Republic…
-##  2 Alaska          12.3     86.6     63.2        59351. Republic…
-##  3 Arizona         19.0     81.8     69.7        42418. Republic…
-##  4 Arkansas        20.0     78.9     71.2        34983. Republic…
-##  5 California      14.2     82.5     63.3        55266. Democrat…
-##  6 Colorado        12.9     88.1     72.1        50136. Democrat…
-##  7 Connecticut      8.31    89.1     71.7        68935. Democrat…
-##  8 Delaware        11.5     86.2     74.7        55568. Democrat…
-##  9 District of …   18.5     86.5     43.5        58526  Democrat…
-## 10 Florida         16.0     82.2     74.6        44269. Republic…
+##  1 Alabama         19.9     76.8     73.4        36963. Rep      
+##  2 Alaska          12.3     86.6     63.2        59351. Rep      
+##  3 Arizona         19.0     81.8     69.7        42418. Rep      
+##  4 Arkansas        20.0     78.9     71.2        34983. Rep      
+##  5 California      14.2     82.5     63.3        55266. Dem      
+##  6 Colorado        12.9     88.1     72.1        50136. Dem      
+##  7 Connecticut      8.31    89.1     71.7        68935. Dem      
+##  8 Delaware        11.5     86.2     74.7        55568. Dem      
+##  9 District of …   18.5     86.5     43.5        58526  Dem      
+## 10 Florida         16.0     82.2     74.6        44269. Rep      
 ## # … with 41 more rows
 ```
 
@@ -578,16 +578,16 @@ povdat
 ## # A tibble: 51 x 6
 ##    state         poverty hs_grad home_own median_income party_maj
 ##    &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;    
-##  1 Alabama         19.9     76.8     73.4        36963. Republic…
-##  2 Alaska          12.3     86.6     63.2        59351. Republic…
-##  3 Arizona         19.0     81.8     69.7        42418. Republic…
-##  4 Arkansas        20.0     78.9     71.2        34983. Republic…
-##  5 California      14.2     82.5     63.3        55266. Democrat…
-##  6 Colorado        12.9     88.1     72.1        50136. Democrat…
-##  7 Connecticut      8.31    89.1     71.7        68935. Democrat…
-##  8 Delaware        11.5     86.2     74.7        55568. Democrat…
-##  9 District of …   18.5     86.5     43.5        58526  Democrat…
-## 10 Florida         16.0     82.2     74.6        44269. Republic…
+##  1 Alabama         19.9     76.8     73.4        36963. Rep      
+##  2 Alaska          12.3     86.6     63.2        59351. Rep      
+##  3 Arizona         19.0     81.8     69.7        42418. Rep      
+##  4 Arkansas        20.0     78.9     71.2        34983. Rep      
+##  5 California      14.2     82.5     63.3        55266. Dem      
+##  6 Colorado        12.9     88.1     72.1        50136. Dem      
+##  7 Connecticut      8.31    89.1     71.7        68935. Dem      
+##  8 Delaware        11.5     86.2     74.7        55568. Dem      
+##  9 District of …   18.5     86.5     43.5        58526  Dem      
+## 10 Florida         16.0     82.2     74.6        44269. Rep      
 ## # … with 41 more rows
 ```
 
@@ -613,12 +613,12 @@ summary(mod1)
 ## -4.8794 -0.8104 -0.0762  0.8412  3.2827 
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)          7.607e+01  4.582e+00  16.602  &lt; 2e-16 ***
-## hs_grad             -4.534e-01  5.599e-02  -8.098 2.12e-10 ***
-## home_own            -1.461e-01  3.538e-02  -4.130 0.000151 ***
-## median_income       -2.610e-04  3.427e-05  -7.616 1.10e-09 ***
-## party_majRepublican -5.110e-01  5.135e-01  -0.995 0.324857    
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    7.607e+01  4.582e+00  16.602  &lt; 2e-16 ***
+## hs_grad       -4.534e-01  5.599e-02  -8.098 2.12e-10 ***
+## home_own      -1.461e-01  3.538e-02  -4.130 0.000151 ***
+## median_income -2.610e-04  3.427e-05  -7.616 1.10e-09 ***
+## party_majRep  -5.110e-01  5.135e-01  -0.995 0.324857    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -719,9 +719,9 @@ povdat[12, ]
 
 ```
 ## # A tibble: 1 x 6
-##   state  poverty hs_grad home_own median_income party_maj 
-##   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;     
-## 1 Hawaii       9    87.4     49.5         58683 Democratic
+##   state  poverty hs_grad home_own median_income party_maj
+##   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;    
+## 1 Hawaii       9    87.4     49.5         58683 Dem
 ```
 
 --
@@ -747,7 +747,7 @@ Here's a comparison of `mod`, `mod1` and `mod2`
 &lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;(0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;035)&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;(0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;035)&lt;/td&gt;&lt;/tr&gt;
 &lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;median_income&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;−0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;000&lt;span class="signif.symbol"&gt;***&lt;/span&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;−0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;000&lt;span class="signif.symbol"&gt;***&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;(0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;000)&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;(0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;000)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;party_maj: Republican/Democratic&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;−0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;511&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;party_maj: Rep/Dem&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;−0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;511&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;(0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;513)&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; border-top: 1px solid;"&gt;sigma&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-top: 1px solid;"&gt;2&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-top: 1px solid;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-top: 1px solid;"&gt;068&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-top: 1px solid;"&gt;1&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-top: 1px solid;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-top: 1px solid;"&gt;354&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-top: 1px solid;"&gt;1&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-top: 1px solid;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-top: 1px solid;"&gt;354&lt;/td&gt;&lt;/tr&gt;
 &lt;tr style="border-style: none;"&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left;"&gt;R-squared&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;716&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;886&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;"&gt;0&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;"&gt;.&lt;/td&gt;&lt;td style="padding-top: 1px; padding-bottom: 1px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;"&gt;883&lt;/td&gt;&lt;/tr&gt;
@@ -1189,6 +1189,9 @@ ggplot(titanic, aes(x = Age, y = Survived)) +
 ---
 
 Besides the weird looking graph, the **normality assumption** is violated as well.
+
+--
+
 PROBLEM 1: Since `\(y_i\)` can only take two values (survived vs not-survived), it is in fact a Bernoulli distribution and not normal.
 
 --
@@ -1384,6 +1387,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1401,17 +1430,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

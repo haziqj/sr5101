@@ -2,7 +2,7 @@
 title: "SR-5101 Advanced Research Skills"
 subtitle: "(2/3) Hypothesis testing"
 author: "Dr. Haziq Jamil"
-date: "Semester 2, 2019/20"
+date: "Semester 1, 2020/21"
 output:
   xaringan::moon_reader:
     css: [default, duke-blue, metropolis-fonts, "custom.css"]
@@ -27,6 +27,42 @@ layout: true
 
 ---
 
+- _Imagine coming home and discovering this in your kitchen._
+
+.center[![:scale 30%](figures/fido.png)![:scale 30%](figures/fido2.png)]
+
+ 
+--
+
+- Do you yell at Fido or do you not yell at Fido? That depends on whether he is innocent. How can I know?
+
+---
+
+- Assume Fido is innocent (null hypothesis). How surprising would this evidence be if Fido is innocent?
+
+--
+
+- Quantify it: What is the probability that (in this world where Fido is innocent) am I to see something at least as damning as the evidence we saw (in real life)? *This is the p-value*.
+
+--
+
+- **Scenario A:** My four-year old is a cheeky little kid, maybe she put the lid on Fido. She does this quite often, so I have little reason to deny that Fido is innocent. *Not sufficient evidence to reject the null*.
+
+--
+
+- **Scenario B:** My four-year old was at school. I guess my crazy neighbour climbed in through the window, ran all around the apartment, put the bin on the dog's head... but it doesn't seem very likely. *Reject the null*.
+
+--
+
+- Note: We may never know what exactly happened, but we base decisions based on the likelihood of the evidence occurring. 
+
+---
+layout: true 
+
+### Lady tasting tea
+
+---
+
 - Statistics provide the framework for discerning 'credible truth' by means of 'statistical significance'.
 
 --
@@ -39,7 +75,7 @@ layout: true
 
 --
 
-- Eight cups of milk tea were prepared, four of which had the milk poured in first, and the remaining four had the tea poured in first. 
+- Eight cups of milk tea were prepared, four of which had the milk poured in first, and the remaining four had the tea poured in first.
 
 - The lady tastes the tea at random and tells us whether the tea or the milk was poured in first for each cup.
 
@@ -921,11 +957,20 @@ layout: true
 
 ---
 
+- What about heteroskedasticity?
+
+  - $t$-tests and ANOVA assumes that the data come from a normal distribution with similar variances.
+  - You could test this assumption (Levene's test).
+  - For the $t$-test, can use Welch's test (recommended even if Levene's test fails).
+  - For the ANOVA, nothing much we can do...
+
+--
+
 - Any other tests I can use?
 
   - All of the tests we described are **parametric** tests.
   - There are several non-parametric tests that can be employed which relaxes the assumption of a particular distribution being required.
-  - Example: [Permutation test](https://bit.ly/387s4cC).
+  - Example: [Permutation test](https://bit.ly/387s4cC), Bootstrap.
 
 
 ---

@@ -2,7 +2,7 @@
 title: "SR-5101 Advanced Research Skills"
 subtitle: "(3/3) Linear models"
 author: "Dr. Haziq Jamil"
-date: "Semester 2, 2019/20"
+date: "Semester 1, 2020/21"
 output:
   xaringan::moon_reader:
     css: [default, duke-blue, metropolis-fonts, "custom.css"]
@@ -792,6 +792,9 @@ ggplot(titanic, aes(x = Age, y = Survived)) +
 ---
 
 Besides the weird looking graph, the **normality assumption** is violated as well.
+
+--
+
 PROBLEM 1: Since $y_i$ can only take two values (survived vs not-survived), it is in fact a Bernoulli distribution and not normal.
 
 --
